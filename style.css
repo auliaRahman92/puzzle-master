@@ -1,0 +1,289 @@
+:root {
+  --primary-color: #4a90e2;
+  --secondary-color: #f39c12;
+  --background-color: #f5f6fa;
+  --menu-bg: #ffffff;
+  --puzzle-bg: #e8f0fe;
+  --brand-color: #2c3e50;
+  --brand-secondary: #7f8c8d;
+}
+
+body {
+  font-family: 'Poppins', Arial, sans-serif;
+  background-color: var(--background-color);
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+#menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  list-style-type: none;
+  padding: 10px;
+  margin: 0;
+  background-color: var(--menu-bg);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  z-index: 1000;
+}
+
+#menu li {
+  margin: 5px;
+  padding: 8px 15px;
+  border-radius: 25px;
+  background-color: var(--primary-color);
+  color: white;
+  transition: all 0.3s ease;
+  font-size: 0.9rem;
+}
+
+#menu li:hover {
+  background-color: var(--secondary-color);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+}
+
+#shape {
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 0.9rem;
+  cursor: pointer;
+  outline: none;
+}
+
+#shape option {
+  background-color: var(--menu-bg);
+  color: #333;
+}
+
+#forPuzzle {
+  position: fixed;
+  width: 95vw;
+  height: calc(100vh - 80px);
+  top: 70px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--puzzle-bg);
+  border-radius: 15px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+}
+
+.polypiece {
+  display: block;
+  position: absolute;
+  transition: transform 0.2s ease;
+  cursor: grab;
+}
+
+.polypiece:active {
+  cursor: grabbing;
+  transform: scale(1.05);
+  z-index: 1001;
+}
+
+.moving {
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+#display {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: var(--primary-color);
+  margin: 0 0 10px 0;
+}
+
+button {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 8px 20px;
+  border-radius: 25px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  background-color: var(--secondary-color);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+}
+
+.brand-container {
+  display: flex !important;
+  align-items: center;
+  gap: 15px;
+  background: none !important;
+  padding: 0 !important;
+  min-width: auto !important;
+}
+
+.brand-container span {
+  background-color: var(--primary-color);
+  padding: 10px 17px;
+  border-radius: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.brand {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.brand h1 {
+  color: var(--brand-color);
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.brand .subtitle {
+  color: var(--brand-secondary);
+  font-size: 0.8rem;
+  background: none;
+  padding: 0;
+}
+
+/* Media Queries for Responsiveness */
+@media screen and (max-width: 768px) {
+  #menu {
+    padding: 5px;
+    align-items: center;
+    text-align: center;
+  }
+
+  #menu li {
+    padding: 10px 20px;
+    font-size: 0.8rem;
+    width: 80%; /* Make menu items wider */
+    margin: 5px auto; /* Center menu items */
+  }
+
+  #forPuzzle {
+    width: 98vw;
+    height: calc(100vh - 60px);
+    top: 50px;
+    border-radius: 10px;
+  }
+
+  
+
+  button {
+    padding: 6px 15px;
+    font-size: 0.8rem;
+  }
+
+  .brand-container {
+    width: 100% !important;
+    justify-content: center !important; /* Center the brand container */
+    margin-bottom: 15px !important;
+    padding: 15px !important;
+  }
+
+  .brand {
+    align-items: center; /* Center brand text */
+    text-align: center;
+  }
+
+  #shape {
+    width: 100%; /* Make select element full width */
+    text-align: center;
+    text-align-last: center; /* Center select text */
+  }
+
+  .brand h1 {
+    font-size: 1.1rem;
+  }
+
+  .polypiece {
+    touch-action: none; /* Improve touch handling */
+  }
+}
+
+@media screen and (max-width: 480px) {
+  #menu li {
+    width: 90%; /* Slightly wider on smaller screens */
+    padding: 8px 15px;
+    font-size: 0.85rem;
+  }
+
+  #forPuzzle {
+    width: 100vw;
+    height: calc(100vh - 50px);
+    top: 45px;
+    border-radius: 0;
+  }
+
+  body {
+    overflow: hidden; /* Prevent scrolling on mobile */
+  }
+
+  #menu {
+    padding: 3px;
+  }
+
+  button {
+    width: 100%;
+    margin: 5px 0;
+  }
+
+  .brand .subtitle {
+    font-size: 0.7rem;
+  }
+
+  .brand-container span {
+    width: 45px;
+    height: 45px;
+    margin: 0 auto; /* Center hamburger icon */
+  }
+
+  .brand-container {
+    flex-direction: column; /* Stack hamburger and brand vertically */
+    gap: 10px;
+  }
+
+  .brand {
+    width: 100%;
+  }
+
+  .brand h1 {
+    font-size: 1.2rem;
+  }
+
+  /* Ensure select container is centered */
+  li:has(#shape) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+/* Add smooth scrolling */
+* {
+  scroll-behavior: smooth;
+}
+
+/* Add loading animation for pieces */
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.polypiece {
+  animation: fadeIn 0.3s ease-out;
+}
