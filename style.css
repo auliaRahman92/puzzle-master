@@ -6,6 +6,8 @@
   --puzzle-bg: #e8f0fe;
   --brand-color: #2c3e50;
   --brand-secondary: #7f8c8d;
+  --hamburger-size-mobile: 1.5rem;
+  --menu-mobile-padding: 15px;
 }
 
 body {
@@ -26,7 +28,6 @@ body {
   padding: 10px;
   margin: 0;
   background-color: var(--menu-bg);
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -42,6 +43,14 @@ body {
   color: white;
   transition: all 0.3s ease;
   font-size: 0.9rem;
+}
+
+#menu li:first-child {
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 15px;
 }
 
 #menu li:hover {
@@ -67,9 +76,9 @@ body {
 
 #forPuzzle {
   position: fixed;
-  width: 95vw;
-  height: calc(100vh - 80px);
-  top: 70px;
+  width: 90vw;
+  height: calc(100vh - 120px);
+  top: 60px;
   left: 50%;
   transform: translateX(-50%);
   background-color: var(--puzzle-bg);
@@ -162,26 +171,50 @@ button:hover {
 /* Media Queries for Responsiveness */
 @media screen and (max-width: 768px) {
   #menu {
-    padding: 5px;
+    padding: var(--menu-mobile-padding);
     align-items: center;
     text-align: center;
+    gap: 15px;
+  }
+
+  #menu li:first-child {
+    font-size: var(--hamburger-size-mobile);
+    width: 50px;
+    height: 50px;
+    padding: 10px;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--secondary-color);
+  }
+
+  #menu li:first-child:active {
+    transform: scale(0.95);
   }
 
   #menu li {
-    padding: 10px 20px;
-    font-size: 0.8rem;
-    width: 80%; /* Make menu items wider */
-    margin: 5px auto; /* Center menu items */
+    margin: 8px;
+    padding: 12px 20px;
+    font-size: 1rem;
+    min-width: 80px;
+    text-align: center;
   }
 
   #forPuzzle {
-    width: 98vw;
-    height: calc(100vh - 60px);
+    width: 95vw;
+    height: calc(100vh - 140px);
     top: 50px;
     border-radius: 10px;
   }
 
-  
+  #stopwatch {
+    padding: 10px 20px;
+  }
+
+  #display {
+    font-size: 1.5rem;
+  }
 
   button {
     padding: 6px 15px;
@@ -216,10 +249,17 @@ button:hover {
 }
 
 @media screen and (max-width: 480px) {
+  #menu li:first-child {
+    width: 45px;
+    height: 45px;
+    font-size: calc(var(--hamburger-size-mobile) - 0.5rem);
+  }
+
   #menu li {
     width: 90%; /* Slightly wider on smaller screens */
-    padding: 8px 15px;
-    font-size: 0.85rem;
+    padding: 10px 15px;
+    font-size: 0.9rem;
+    min-width: 70px;
   }
 
   #forPuzzle {
@@ -235,6 +275,13 @@ button:hover {
 
   #menu {
     padding: 3px;
+  }
+
+  #stopwatch {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
   button {
@@ -270,6 +317,12 @@ button:hover {
     display: flex;
     justify-content: center;
     align-items: center;
+  }
+
+  /* Tambahkan touch target yang lebih besar */
+  #menu li, button {
+    min-height: 44px;
+    min-width: 44px;
   }
 }
 
